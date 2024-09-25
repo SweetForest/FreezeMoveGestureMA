@@ -61,7 +61,7 @@ jobs:
       - name: Create ZIP file
         run: |
           zip -r "${{ env.name }}-${{ env.version }}.zip" . \
-          -x '.git/*' '.github/*' '*.md' '*.bak'
+          -x '.git/*' '.github/*' '*.md' '*.md.meta' '*.bak'
 
       - name: Create a new release (test or public)
         id: create_release
@@ -97,7 +97,7 @@ jobs:
       - name: Copy files to Packages/${{ env.name }}
         run: |
           mkdir -p "Packages/${{ env.name }}"
-          rsync -av --exclude='.git' --exclude='.github' --exclude='*.md' --exclude='*.zip' . "Packages/${{ env.name }}/"
+          rsync -av --exclude='.git' --exclude='.github' --exclude='*.md' --exclude='*.md.meta' --exclude='*.zip' . "Packages/${{ env.name }}/"
 
       - name: List files in workspace
         run: |
