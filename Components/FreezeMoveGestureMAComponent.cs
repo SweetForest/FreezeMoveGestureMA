@@ -9,24 +9,26 @@ namespace sweetforest.freezemovegesturema.Components
     [DisallowMultipleComponent]
     public class FreezeMoveGestureComponent : MonoBehaviour, IEditorOnly
     {
-        public bool LeftFist;
-        public bool LeftOpen;
-        public bool LeftPoint;
-        public bool LeftPeace;
-        public bool LeftRockNRoll = true;
-        public bool LeftGun;
-        public bool LeftThumbsUp;
 
-        [Space(10)] 
-        public bool RightFist;
-        public bool RightOpen;
-        public bool RightPoint;
-        public bool RightPeace;
-        public bool RightRockNRoll;
-        public bool RightGun;
-        public bool RightThumbsUp;
+        public enum HandType
+        {
+            Left, Right
+        }
 
-        [Space(20)] 
+        [Space(15)] 
+        public HandType SelectHand = HandType.Left;
+        [Space(15)] 
+        public bool Neutral;
+        public bool Fist;
+        public bool Open;
+        public bool Point;
+        public bool Peace;
+        public bool RockNRoll = true;
+        public bool Gun;
+        public bool ThumbsUp;
+
+
+        [Space(15)] 
         public bool AddToggleMenu = true;
 
 

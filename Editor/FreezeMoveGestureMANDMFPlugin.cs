@@ -50,20 +50,14 @@ namespace sweetforest.freezemovegesturema.Editor
 
             var gestureDictionary = new Dictionary<string, bool>
     {
-        { "LeftFist", freezeMoveGestureComponent.LeftFist },
-        { "RightFist", freezeMoveGestureComponent.RightFist },
-        { "LeftOpen", freezeMoveGestureComponent.LeftOpen },
-        { "RightOpen", freezeMoveGestureComponent.RightOpen },
-        { "LeftPoint", freezeMoveGestureComponent.LeftPoint },
-        { "RightPoint", freezeMoveGestureComponent.RightPoint },
-        { "LeftPeace", freezeMoveGestureComponent.LeftPeace },
-        { "RightPeace", freezeMoveGestureComponent.RightPeace },
-        { "LeftRockNRoll", freezeMoveGestureComponent.LeftRockNRoll },
-        { "RightRockNRoll", freezeMoveGestureComponent.RightRockNRoll },
-        { "LeftGun", freezeMoveGestureComponent.LeftGun },
-        { "RightGun", freezeMoveGestureComponent.RightGun },
-        { "LeftThumbsUp", freezeMoveGestureComponent.LeftThumbsUp },
-        { "RightThumbsUp", freezeMoveGestureComponent.RightThumbsUp }
+        { "Neutral", freezeMoveGestureComponent.Neutral },
+        { "Fist", freezeMoveGestureComponent.Fist },
+        { "Open", freezeMoveGestureComponent.Open },
+        { "Point", freezeMoveGestureComponent.Point },
+        { "Peace", freezeMoveGestureComponent.Peace },
+        { "RockNRoll", freezeMoveGestureComponent.RockNRoll },
+        { "Gun", freezeMoveGestureComponent.Gun },
+        { "ThumbsUp", freezeMoveGestureComponent.ThumbsUp }
     };
 
             // Get the path to the assembly where this script is located
@@ -86,7 +80,7 @@ namespace sweetforest.freezemovegesturema.Editor
             }
             // Load text from path
             string controllerText = File.ReadAllText(controllerPath);
-
+            controllerText = controllerText.Replace($"%HAND%", freezeMoveGestureComponent.SelectHand.ToString());
             // Replace placeholders in the controller text
             foreach (var item in gestureDictionary)
             {
@@ -95,6 +89,7 @@ namespace sweetforest.freezemovegesturema.Editor
 
                 // Replace "%Key%" with "0" or "1"
                 controllerText = controllerText.Replace($"%{key}%", value ? "0" : "1");
+                
             }
             controllerText = controllerText.Replace("%ControllerTemplate%", "generated");
             // save file to /Assets/_FreezeMoveGestureMA/generated.controller
